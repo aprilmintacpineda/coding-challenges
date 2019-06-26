@@ -4,6 +4,16 @@ I don't know what this coding challenge is called, if you do know, please open a
 
 # Robot on a table
 
+#### Running
+
+- Install the latest version of [NodeJs](https://nodejs.org/en/).
+- Verify your installation by running `npm -v` and `node -v`.
+- Clone the repository `https://github.com/aprilmintacpineda/coding-challenges.git`.
+- Go to the project directory; `cd coding-challenges`.
+- `npm i` to install dependencies.
+- Go to the `RobotOnTable` folder; `cd RobotOnTable`
+- then run; `node index.js`
+
 #### Description
 
 The application is a simulation of a robot moving on a square table top, of dimensions 5 units x 5 units. There are no other obstructions on the table surface. The robot is free to roam around the surface of the table, but must be prevented from falling to destruction. Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed.
