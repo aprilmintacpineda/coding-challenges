@@ -52,8 +52,9 @@ Input:
 
 Output: `0,1,NORTH`
 
-```
 Input: 
+
+```
 PLACE 0,0,NORTH
 LEFT
  REPORT 
