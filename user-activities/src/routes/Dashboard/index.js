@@ -21,9 +21,7 @@ class Dashboard extends React.Component {
           <div id="empty-workspace" className="container-centered">
             <h1>Empty workspace</h1>
             <p>You currently don't have any boards.</p>
-            <Link to="/board/create">
-              <button  className="theme-default width-max spaced-atop">Create board</button>
-            </Link>
+            <button  className="theme-default width-max spaced-atop" onClick={this.displayCreateBoardForm}>Create board</button>
           </div>
         </div>
       );

@@ -3,6 +3,7 @@ import { updateStore, store } from 'fluxible-js';
 import Popup from '../../components/Popup';
 import InlineError from '../../components/InlineError';
 import { categories, statuses } from '../../constants';
+import { randomStr } from '../../helper-funcs/strings';
 
 export default class CreateActivityForm extends React.Component {
   constructor (props) {
@@ -58,6 +59,7 @@ export default class CreateActivityForm extends React.Component {
               return {
                 ...list,
                 activities: list.activities.concat({
+                  id: randomStr(),
                   name: this.state.name.input,
                   details: this.state.details.input,
                   category: categories.find(category => category.id === this.state.category),

@@ -30,7 +30,11 @@ class BoardView extends React.Component {
 
     return (
       <>
-        <button className="theme-default width-max">Create activity</button>
+        <button className="theme-default width-max" onClick={() => {
+          updateStore({
+            Popup: <CreateActivityForm boardId={this.props.match.params.id} listId={list.id} />
+          });
+        }}>Create activity</button>
         {list.activities.map(activity =>
           <button key={activity.id} className="activity">
             <p><strong>{activity.name}</strong></p>
