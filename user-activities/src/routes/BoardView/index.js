@@ -32,11 +32,11 @@ class BoardView extends React.Component {
       <>
         <button className="theme-default width-max">Create activity</button>
         {list.activities.map(activity =>
-          <div key={activity.id} className="activity">
-            <p>{activity.name}</p>
+          <button key={activity.id} className="activity">
+            <p><strong>{activity.name}</strong></p>
             <p>{activity.category.label}</p>
-            <p>{new Date(activity.due).format('%F %D, %y')}</p>
-          </div>
+            <p>Due on {new Date(activity.due).format('%F %D, %y')}</p>
+          </button>
         )}
       </>
     )
