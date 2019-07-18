@@ -1,0 +1,47 @@
+#dashboard {
+  #empty-workspace {
+    text-align: center;
+  }
+  #boards {
+    button, a {
+      color: #000;
+      text-decoration: none;
+      display: block;
+      border: 1px solid #d0d1d5;
+      border-radius: 4px;
+      padding: 10px;
+      float: left;
+      margin-left: 10px;
+      margin-top: 10px;
+      width: 250px;
+      height: 300px;
+      position: relative;
+      &:hover {
+        border: 1px solid blue;
+      }
+    }
+    #new-board-button {
+      position: relative;
+      border: 1px solid blue;
+      color: blue;
+    }
+    .board {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        color: gray;
+      }
+    }
+  }
+}
+#create-board {
+  width: 400px;
+  .form-group {
+    margin-bottom: 10px;
+  }
+}

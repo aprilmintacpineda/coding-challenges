@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+label {
+  display: block;
+}
+button,
+a,
+input[type=submit],
+input[type=button],
+input[type=text],
+textarea {
+  outline: none;
+}
+button,
+a,
+input[type=submit],
+input[type=button] {
+  cursor: pointer;
+}
+textarea {
+  height: 300px;
+  resize: none;
+}
+.spaced-atop {
+  margin-top: 5px;
+}
+.container-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container-title {
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d0d1d5;
+}
+.width-max {
+  width: 100%;
+}
+input[type=text].theme-default,
+textarea.theme-default,
+input[type=date].theme-default {
+  border: 1px solid #d0d1d5;
+  padding: 7px;
+  border-radius: 4px;
+}
+button.theme-text,
+input[type=submit].theme-text,
+input[type=button].theme-text {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+button.theme-default,
+input[type=submit].theme-default,
+input[type=button].theme-default {
+  border: 1px solid blue;
+  color: blue;
+  padding: 10px;
+  border-radius: 4px;
+  &.scheme-danger {
+    border: 1px solid #ff4b19;
+    color: #ff4b19;
+  }
+}
+select.theme-default {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #d0d1d5;
+  background: #fff;
+}
