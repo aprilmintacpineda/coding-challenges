@@ -62,9 +62,7 @@ export default class BoardCreate extends React.Component {
   }
 
   cancel = () => {
-    updateStore({
-      Popup: null
-    });
+    updateStore({ Popup: null });
   }
 
   render () {

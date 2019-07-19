@@ -37,11 +37,23 @@
         padding: 5px;
         border-radius: 4px;
         margin-top: 10px;
-        display: block;
         width: 100%;
-        text-align: left;
-        &:hover {
-          border: 1px solid blue;
+        .footer {
+          border-top: 1px solid #d0d1d5;
+          margin-top: 10px;
+          padding-top: 10px;
+          button {
+            margin-right: 5px;
+            color: gray;
+            border-right: 1px solid #d0d1d5;
+            padding-right: 5px;
+            &:last-child {
+              border-right: 0;
+            }
+            &:hover {
+              color: blue;
+            }
+          }
         }
       }
     }
@@ -54,5 +66,16 @@
   width: 500px;
   .form-group {
     margin-bottom: 10px;
+  }
+}
+#delete-activity-dialog {
+  .activity {
+    border: 1px solid #d0d1d5;
+    padding: 5px;
+    border-radius: 4px;
+    margin: 10px 0;
+  }
+  .footer button {
+    margin-right: 10px;
   }
 }

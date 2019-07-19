@@ -18,9 +18,7 @@ export default class CreateListForm extends React.Component {
   }
 
   cancel = () => {
-    updateStore({
-      Popup: null
-    });
+    updateStore({ Popup: null });
   }
 
   createList = ev => {

@@ -4,6 +4,7 @@ import React from 'react';
 import { mapStatesToProps } from 'react-fluxible';
 import { updateStore } from 'fluxible-js';
 import { Link, Redirect } from 'react-router-dom';
+import Popup from '../../components/Popup';
 import { truncate } from '../../helper-funcs/strings';
 import CreateListForm from './CreateListForm';
 import CreateActivityForm from './CreateActivityForm';
@@ -36,11 +37,59 @@ class BoardView extends React.Component {
           });
         }}>Create activity</button>
         {list.activities.map(activity =>
-          <button key={activity.id} className="activity">
+          <div key={activity.id} className="activity">
             <p><strong>{activity.name}</strong></p>
             <p>{activity.category.label}</p>
             <p>Due on {new Date(activity.due).format('%F %D, %y')}</p>
-          </button>
+            <div className="footer">
+              <button className="theme-text" title="Edit"><i className="fas fa-edit"></i></button>
+              <button className="theme-text" title="Delete" onClick={() => {
+                updateStore({
+                  Popup: (
+                    <Popup>
+                      <div id="delete-activity-dialog">
+                        <p>Are you sure you want to delete this activity?</p>
+                        <div className="activity">
+                          <p><strong>Name:</strong> {activity.name}</p>
+                          <p><strong>Status:</strong> {activity.status.label}</p>
+                          <p><strong>Category:</strong> {activity.category.label}</p>
+                          <p><strong>Due on:</strong> {new Date(activity.due).format('%F %D, %y')}</p>
+                          <br/>
+                          <p><strong>Details:</strong> <br/>{activity.details}</p>
+                        </div>
+                        <div className="footer">
+                          <button className="theme-default scheme-danger" onClick={() => {
+                            updateStore({
+                              Popup: null,
+                              boards: this.props.boards.map(board => {
+                                if (board.id !== this.props.match.params.id) return board;
+
+                                return {
+                                  ...board,
+                                  lists: board.lists.map(_list => {
+                                    if (_list.id !== list.id) return _list;
+
+                                    return {
+                                      ..._list,
+                                      activities: _list.activities.filter(_activity => _activity.id !== activity.id)
+                                    };
+                                  })
+                                };
+                              })
+                            });
+                          }}>Delete</button>
+                          <button className="theme-default" onClick={() => {
+                            updateStore({ Popup: null });
+                          }}>Cancel</button>
+                        </div>
+                      </div>
+                    </Popup>
+                  )
+                });
+              }}><i className="fas fa-trash"></i></button>
+              <button className="theme-text" title="Details"><i className="fas fa-external-link-alt"></i></button>
+            </div>
+          </div>
         )}
       </>
     )

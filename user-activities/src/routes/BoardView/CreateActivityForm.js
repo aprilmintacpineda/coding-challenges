@@ -128,9 +128,7 @@ export default class CreateActivityForm extends React.Component {
   }
 
   cancel = () => {
-    updateStore({
-      Popup: null
-    });
+    updateStore({ Popup: null });
   }
 
   render () {

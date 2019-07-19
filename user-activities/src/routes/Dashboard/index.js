@@ -9,9 +9,7 @@ import CreateBoardForm from './CreateBoardForm';
 
 class Dashboard extends React.Component {
   displayCreateBoardForm = () => {
-    updateStore({
-      Popup: <CreateBoardForm />
-    });
+    updateStore({ Popup: <CreateBoardForm /> });
   }
 
   render () {
