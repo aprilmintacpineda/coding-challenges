@@ -6,12 +6,12 @@ import { mapStatesToProps } from 'react-fluxible';
 import { updateStore } from 'fluxible-js';
 import { truncate } from '../../helper-funcs/strings';
 import Popup from '../../components/Popup';
-import CreateBoardForm from './CreateBoardForm';
+import BoardForm from './BoardForm';
 import DeleteBoard from './DeleteBoard';
 
 class Dashboard extends React.Component {
   displayCreateBoardForm = () => {
-    updateStore({ Popup: <CreateBoardForm /> });
+    updateStore({ Popup: <BoardForm /> });
   }
 
   render () {
@@ -40,7 +40,11 @@ class Dashboard extends React.Component {
               <br/>
               <p>Created: {new Date(board.created_at).format('%f %M, %y %h:%N:%S %a')}</p>
               <div className="footer">
-                <button className="theme-text" title="Edit"><i className="fas fa-edit"></i></button>
+                <button className="theme-text" title="Edit" onClick={() => {
+                  updateStore({
+                    Popup: <BoardForm board={board} />
+                  });
+                }}><i className="fas fa-edit"></i></button>
                 <button className="theme-text" title="Delete" onClick={() => {
                   updateStore({
                     Popup: <DeleteBoard board={board} />

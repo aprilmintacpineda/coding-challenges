@@ -10,13 +10,23 @@ export default class BoardCreate extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      name: {
-        input: '',
-        error: ''
-      },
-      description: ''
-    };
+    if (this.props.board) {
+      this.state = {
+        name: {
+          input: this.props.board.name,
+          error: ''
+        },
+        description: this.props.board.description
+      };
+    } else {
+      this.state = {
+        name: {
+          input: '',
+          error: ''
+        },
+        description: ''
+      };
+    }
   }
 
   nameChanged = ev => {
@@ -48,16 +58,31 @@ export default class BoardCreate extends React.Component {
         }
       });
     } else {
-      updateStore({
-        Popup: null,
-        boards: store.boards.concat({
-          id: randomStr(),
-          name: this.state.name.input,
-          description: this.state.description.trim(),
-          created_at: Date.now(),
-          lists: []
-        })
-      });
+      if (this.props.board) {
+        updateStore({
+          Popup: null,
+          boards: store.boards.map(board => {
+            if (board.id !== this.props.board.id) return board;
+
+            return {
+              ...board,
+              name: this.state.name.input,
+              description: this.state.description.trim()
+            };
+          })
+        });
+      } else {
+        updateStore({
+          Popup: null,
+          boards: store.boards.concat({
+            id: randomStr(),
+            name: this.state.name.input,
+            description: this.state.description.trim(),
+            created_at: Date.now(),
+            lists: []
+          })
+        });
+      }
     }
   }
 
@@ -86,13 +111,13 @@ export default class BoardCreate extends React.Component {
             <label>Board description</label>
             <textarea
               className="theme-default width-max"
-              value={this.state.description.value}
+              value={this.state.description}
               onChange={this.descriptionChanged}
               onBlur={this.descriptionChanged}
               placeholder="* Optional"
             />
           </div>
-          <input type="submit" className="theme-default width-max" value="Create" />
+          <input type="submit" className="theme-default width-max" value={this.props.board ? 'Save' : 'Create'} />
           <input
             type="button"
             className="theme-default scheme-danger spaced-atop width-max"
