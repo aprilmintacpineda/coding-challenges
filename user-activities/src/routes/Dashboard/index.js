@@ -7,6 +7,7 @@ import { updateStore } from 'fluxible-js';
 import { truncate } from '../../helper-funcs/strings';
 import Popup from '../../components/Popup';
 import CreateBoardForm from './CreateBoardForm';
+import DeleteBoard from './DeleteBoard';
 
 class Dashboard extends React.Component {
   displayCreateBoardForm = () => {
@@ -39,35 +40,10 @@ class Dashboard extends React.Component {
               <br/>
               <p>Created: {new Date(board.created_at).format('%f %M, %y %h:%N:%S %a')}</p>
               <div className="footer">
+                <button className="theme-text" title="Edit"><i className="fas fa-edit"></i></button>
                 <button className="theme-text" title="Delete" onClick={() => {
                   updateStore({
-                    Popup: (
-                      <Popup>
-                        <div id="delete-board-dialog">
-                          <p>Are you sure you want to delete this board?</p>
-                          <div className="board">
-                            <p title={board.name}><strong>Name:</strong> {board.name}</p>
-                            <p title={board.description}>
-                              <strong>Description:</strong>
-                              <br/>
-                              {board.description? board.description : 'No description provided.'}
-                            </p>
-                          </div>
-                          <p>This action cannot be undone.</p>
-                          <div className="footer">
-                            <button className="theme-default scheme-danger" onClick={() => {
-                              updateStore({
-                                Popup: null,
-                                boards: this.props.boards.filter(_board => _board.id !== board.id)
-                              });
-                            }}>Delete</button>
-                            <button className="theme-default" onClick={() => {
-                              updateStore({ Popup: null });
-                            }}>Cancel</button>
-                          </div>
-                        </div>
-                      </Popup>
-                    )
+                    Popup: <DeleteBoard board={board} />
                   });
                 }}>
                   <i className="fas fa-trash"></i>

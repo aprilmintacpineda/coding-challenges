@@ -8,6 +8,7 @@ import Popup from '../../components/Popup';
 import { truncate } from '../../helper-funcs/strings';
 import CreateListForm from './CreateListForm';
 import CreateActivityForm from './CreateActivityForm';
+import DeleteActivity from './DeleteActivity';
 
 class BoardView extends React.Component {
   displayCreateListForm = () => {
@@ -46,45 +47,11 @@ class BoardView extends React.Component {
               <button className="theme-text" title="Delete" onClick={() => {
                 updateStore({
                   Popup: (
-                    <Popup>
-                      <div id="delete-activity-dialog">
-                        <p>Are you sure you want to delete this activity?</p>
-                        <div className="activity">
-                          <p><strong>Name:</strong> {activity.name}</p>
-                          <p><strong>Status:</strong> {activity.status.label}</p>
-                          <p><strong>Category:</strong> {activity.category.label}</p>
-                          <p><strong>Due on:</strong> {new Date(activity.due).format('%F %D, %y')}</p>
-                          <br/>
-                          <p><strong>Details:</strong> <br/>{activity.details}</p>
-                        </div>
-                        <p>This action cannot be undone.</p>
-                        <div className="footer">
-                          <button className="theme-default scheme-danger" onClick={() => {
-                            updateStore({
-                              Popup: null,
-                              boards: this.props.boards.map(board => {
-                                if (board.id !== this.props.match.params.id) return board;
-
-                                return {
-                                  ...board,
-                                  lists: board.lists.map(_list => {
-                                    if (_list.id !== list.id) return _list;
-
-                                    return {
-                                      ..._list,
-                                      activities: _list.activities.filter(_activity => _activity.id !== activity.id)
-                                    };
-                                  })
-                                };
-                              })
-                            });
-                          }}>Delete</button>
-                          <button className="theme-default" onClick={() => {
-                            updateStore({ Popup: null });
-                          }}>Cancel</button>
-                        </div>
-                      </div>
-                    </Popup>
+                    <DeleteActivity
+                      boardId={this.props.match.params.id}
+                      listId={list.id}
+                      activity={activity}
+                    />
                   )
                 });
               }}><i className="fas fa-trash"></i></button>
