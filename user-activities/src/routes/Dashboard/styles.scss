@@ -3,7 +3,7 @@
     text-align: center;
   }
   #boards {
-    button, a {
+    #new-board-button, .board {
       color: #000;
       text-decoration: none;
       display: block;
@@ -16,9 +16,6 @@
       width: 250px;
       height: 300px;
       position: relative;
-      &:hover {
-        border: 1px solid blue;
-      }
     }
     #new-board-button {
       position: relative;
@@ -28,13 +25,29 @@
     .board {
       overflow: hidden;
       text-overflow: ellipsis;
+      padding: 10px;
       .footer {
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
-        padding: 10px;
-        color: gray;
+        margin: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #d0d1d5;
+        button, a {
+          color: gray;
+          &:hover {
+            color: blue;
+          }
+        }
+        button {
+          padding-right: 5px;
+          margin-right: 5px;
+          border-right: 1px solid #d0d1d5;
+          &:last-child {
+            border-right: 0;
+          }
+        }
       }
     }
   }
@@ -43,5 +56,19 @@
   width: 400px;
   .form-group {
     margin-bottom: 10px;
+  }
+}
+#delete-board-dialog {
+  .board {
+    border: 1px solid #d0d1d5;
+    border-radius: 4px;
+    padding: 5px;
+    margin: 10px 0;
+    max-height: 300px;
+    overflow: auto;
+    width: 350px;
+  }
+  .footer button {
+    margin-right: 10px;
   }
 }

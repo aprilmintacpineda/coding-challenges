@@ -57,6 +57,7 @@ class BoardView extends React.Component {
                           <br/>
                           <p><strong>Details:</strong> <br/>{activity.details}</p>
                         </div>
+                        <p>This action cannot be undone.</p>
                         <div className="footer">
                           <button className="theme-default scheme-danger" onClick={() => {
                             updateStore({
@@ -128,7 +129,7 @@ class BoardView extends React.Component {
     return (
       <div id="board-view">
         <div id="top-bar">
-          <p id="back-button"><Link to="/"><i class="fas fa-chevron-circle-left"></i></Link></p>
+          <p id="back-button"><Link to="/"><i className="fas fa-chevron-circle-left"></i></Link></p>
           <div id="contents">
             <p><strong>{truncate(board.name, 10)}</strong></p>
             <p id="buttons">
