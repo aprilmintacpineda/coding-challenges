@@ -9,6 +9,7 @@ import { truncate } from '../../helper-funcs/strings';
 import CreateListForm from './CreateListForm';
 import CreateActivityForm from './CreateActivityForm';
 import DeleteActivity from './DeleteActivity';
+import DeleteList from './DeleteList';
 
 class BoardView extends React.Component {
   displayCreateListForm = () => {
@@ -76,15 +77,26 @@ class BoardView extends React.Component {
       );
     }
 
-    return (
-      <>
-        {board.lists.map(list =>
-          <div key={list.id} className="list">
-            <p className="container-title"><strong>{list.name}</strong></p>
-            {this.displayListActivities(list)}
+    return board.lists.map(list =>
+      <div key={list.id} className="list">
+        <div className="container-title">
+          <p><strong>{list.name}</strong></p>
+          <div className="buttons">
+            <button className="theme-text" title="Edit"><i className="fas fa-edit"></i></button>
+            <button className="theme-text" title="Delete" onClick={() => {
+              updateStore({
+                Popup: <DeleteList boardId={board.id} list={list} />
+              });
+            }}>
+              <i className="fas fa-trash"></i>
+            </button>
+            <button className="theme-text" title="Details">
+              <i className="fas fa-external-link-alt"></i>
+            </button>
           </div>
-        )}
-      </>
+        </div>
+        {this.displayListActivities(list)}
+      </div>
     );
   }
 

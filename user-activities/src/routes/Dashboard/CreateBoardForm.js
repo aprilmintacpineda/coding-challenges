@@ -53,7 +53,7 @@ export default class BoardCreate extends React.Component {
         boards: store.boards.concat({
           id: randomStr(),
           name: this.state.name.input,
-          description: this.state.description,
+          description: this.state.description.trim(),
           created_at: Date.now(),
           lists: []
         })

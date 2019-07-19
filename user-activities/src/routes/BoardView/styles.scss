@@ -38,6 +38,26 @@
       margin-left: 10px;
       margin-top: 10px;
       width: 250px;
+      .container-title {
+        position: relative;
+        .buttons {
+          position: absolute;
+          right: 0;
+          top: 0;
+          button {
+            margin-left: 5px;
+            padding-left: 5px;
+            color: gray;
+            border-left: 1px solid #d0d1d5;
+            &:first-child {
+              border-left: 0;
+            }
+            &:hover {
+              color: blue;
+            }
+          }
+        }
+      }
       .create-activity {
         color: blue;
       }
@@ -86,6 +106,20 @@
     max-height: 300px;
     width: 300px;
     overflow: auto;
+  }
+  .footer button {
+    margin-right: 10px;
+  }
+}
+#delete-list-dialog {
+  width: 300px;
+  .list {
+    margin: 10px 0;
+    border: 1px solid #d0d1d5;
+    border-radius: 4px;
+    max-height: 300px;
+    overflow: auto;
+    padding: 5px;
   }
   .footer button {
     margin-right: 10px;

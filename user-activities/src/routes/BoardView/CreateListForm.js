@@ -13,7 +13,8 @@ export default class CreateListForm extends React.Component {
       name: {
         input: '',
         error: ''
-      }
+      },
+      description: '',
     };
   }
 
@@ -26,6 +27,7 @@ export default class CreateListForm extends React.Component {
 
     if (!this.state.name.input.trim()) {
       this.setState({
+        ...this.state,
         name: {
           input: this.state.name.input,
           error: 'Please enter name of this list.'
@@ -42,6 +44,7 @@ export default class CreateListForm extends React.Component {
             lists: board.lists.concat({
               id: randomStr(),
               name: this.state.name.input,
+              description: this.state.description.trim(),
               activities: [],
               created_at: Date.now()
             })
@@ -53,10 +56,18 @@ export default class CreateListForm extends React.Component {
 
   nameChanged = ev => {
     this.setState({
+      ...this.state,
       name: {
         input: ev.target.value,
         error: ev.target.value.trim()? '' : 'Please enter name of this list.'
       }
+    });
+  }
+
+  descriptionChanged = ev => {
+    this.setState({
+      ...this.state,
+      description: ev.target.value
     });
   }
 
@@ -76,6 +87,15 @@ export default class CreateListForm extends React.Component {
               placeholder="* required"
             />
             <InlineError error={this.state.name.error} />
+            <br/>
+            <label>Name</label>
+            <textarea
+              className="theme-default width-max"
+              value={this.state.description}
+              onChange={this.descriptionChanged}
+              onBlur={this.descriptionChanged}
+              placeholder="* optional"
+            />
             <br/>
             <input className="theme-default width-max spaced-atop" type="submit" value="Create list" />
             <input
