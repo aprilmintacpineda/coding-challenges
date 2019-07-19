@@ -128,11 +128,13 @@ class BoardView extends React.Component {
     return (
       <div id="board-view">
         <div id="top-bar">
-          <p id="back-button"><Link to="/">{`< Back`}</Link></p>
-          <p><strong>{truncate(board.name, 10)}</strong></p>
-          <p id="buttons">
-            <button className="theme-text" onClick={this.displayCreateListForm}>Create list</button>
-          </p>
+          <p id="back-button"><Link to="/"><i class="fas fa-chevron-circle-left"></i></Link></p>
+          <div id="contents">
+            <p><strong>{truncate(board.name, 10)}</strong></p>
+            <p id="buttons">
+              <button className="theme-text" onClick={this.displayCreateListForm}>Create list</button>
+            </p>
+          </div>
         </div>
         <div id="lists">
           {this.displayLists()}

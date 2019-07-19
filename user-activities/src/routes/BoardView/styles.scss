@@ -2,6 +2,14 @@
   #top-bar {
     border-bottom: 1px solid #d0d1d5;
     padding: 10px;
+    position: relative;
+    #contents {
+      position: absolute;
+      top: 50%;
+      left: 50px;
+      transform: translate(0, -50%);
+      width: calc(100% - 50px);
+    }
     p {
       display: inline-block;
       margin-right: 10px;
@@ -17,6 +25,7 @@
       a {
         color: blue;
         text-decoration: none;
+        font-size: 30px;
       }
     }
   }
