@@ -4,7 +4,7 @@ import React from 'react';
 import { updateStore, store } from 'fluxible-js';
 import InlineError from '../../components/InlineError';
 import Popup from '../../components/Popup';
-import { randomStr } from '../../helper-funcs/strings';
+import { randomStr, trimSpaces } from '../../helper-funcs/strings';
 
 export default class BoardForm extends React.Component {
   constructor (props) {
@@ -66,8 +66,8 @@ export default class BoardForm extends React.Component {
 
             return {
               ...board,
-              name: this.state.name.input.trim(),
-              details: this.state.details.trim()
+              name: trimSpaces(this.state.name.input),
+              details: trimSpaces(this.state.details)
             };
           })
         });
@@ -76,8 +76,8 @@ export default class BoardForm extends React.Component {
           Popup: null,
           boards: store.boards.concat({
             id: randomStr(),
-            name: this.state.name.input.trim(),
-            details: this.state.details.trim(),
+            name: trimSpaces(this.state.name.input),
+            details: trimSpaces(this.state.details),
             created_at: Date.now(),
             lists: []
           })

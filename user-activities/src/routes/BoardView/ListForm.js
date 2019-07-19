@@ -3,7 +3,7 @@ import { updateStore, store } from 'fluxible-js';
 
 import Popup from '../../components/Popup';
 import InlineError from '../../components/InlineError';
-import { randomStr } from '../../helper-funcs/strings';
+import { randomStr, trimSpaces } from '../../helper-funcs/strings';
 
 export default class ListForm extends React.Component {
   constructor (props) {
@@ -57,8 +57,8 @@ export default class ListForm extends React.Component {
 
                 return {
                   ...list,
-                  name: this.state.name.input.trim(),
-                  details: this.state.details.trim()
+                  name: trimSpaces(this.state.name.input),
+                  details: trimSpaces(this.state.details)
                 };
               })
             };
@@ -68,8 +68,8 @@ export default class ListForm extends React.Component {
             ...board,
             lists: board.lists.concat({
               id: randomStr(),
-              name: this.state.name.input.trim(),
-              details: this.state.details.trim(),
+              name: trimSpaces(this.state.name.input),
+              details: trimSpaces(this.state.details),
               activities: [],
               created_at: Date.now()
             })

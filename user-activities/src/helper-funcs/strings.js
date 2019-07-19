@@ -12,3 +12,11 @@ export function truncate (str, len) {
 export function randomStr () {
   return Math.random().toString().substr(2);
 }
+
+export function trimSpaces (str) {
+  return str
+    .trim()
+    .split(/\s/)
+    .filter(part => part)
+    .join(' ');
+}

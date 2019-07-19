@@ -2,7 +2,7 @@ import React from 'react';
 import { updateStore, store } from 'fluxible-js';
 import Popup from '../../components/Popup';
 import InlineError from '../../components/InlineError';
-import { randomStr } from '../../helper-funcs/strings';
+import { randomStr, trimSpaces } from '../../helper-funcs/strings';
 
 const categories = [
   {
@@ -202,8 +202,8 @@ export default class ActivityForm extends React.Component {
 
                     return {
                       ...activity,
-                      name: this.state.name.input.trim(),
-                      details: this.state.details.input.trim(),
+                      name: trimSpaces(this.state.name.input),
+                      details: trimSpaces(this.state.details.input),
                       category: categories.find(category => category.id === this.state.category),
                       status: statuses.find(status => status.id === this.state.status),
                       due: this.state.due
@@ -216,8 +216,8 @@ export default class ActivityForm extends React.Component {
                 ...list,
                 activities: list.activities.concat({
                   id: randomStr(),
-                  name: this.state.name.input.trim(),
-                  details: this.state.details.input.trim(),
+                  name: trimSpaces(this.state.name.input),
+                  details: trimSpaces(this.state.details.input),
                   category: categories.find(category => category.id === this.state.category),
                   status: statuses.find(status => status.id === this.state.status),
                   due: this.state.due
