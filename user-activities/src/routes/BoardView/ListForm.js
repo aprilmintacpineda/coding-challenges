@@ -9,13 +9,23 @@ export default class CreateListForm extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      name: {
-        input: '',
-        error: ''
-      },
-      description: '',
-    };
+    if (this.props.list) {
+      this.state = {
+        name: {
+          input: this.props.list.name,
+          error: ''
+        },
+        description: this.props.list.description,
+      };
+    } else {
+      this.state = {
+        name: {
+          input: '',
+          error: ''
+        },
+        description: '',
+      };
+    }
   }
 
   cancel = () => {
@@ -34,23 +44,45 @@ export default class CreateListForm extends React.Component {
         }
       });
     } else {
-      updateStore({
-        Popup: null,
-        boards: store.boards.map(board => {
-          if (board.id !== this.props.boardId) return board;
+      if (this.props.list) {
+        updateStore({
+          Popup: null,
+          boards: store.boards.map(board => {
+            if (board.id !== this.props.boardId) return board;
 
-          return {
-            ...board,
-            lists: board.lists.concat({
-              id: randomStr(),
-              name: this.state.name.input,
-              description: this.state.description.trim(),
-              activities: [],
-              created_at: Date.now()
-            })
-          };
-        })
-      });
+            return {
+              ...board,
+              lists: board.lists.map(list => {
+                if (list.id !== this.props.list.id) return list;
+
+                return {
+                  ...list,
+                  name: this.state.name.input,
+                  description: this.state.description.trim()
+                };
+              })
+            };
+          })
+        });
+      } else {
+        updateStore({
+          Popup: null,
+          boards: store.boards.map(board => {
+            if (board.id !== this.props.boardId) return board;
+
+            return {
+              ...board,
+              lists: board.lists.concat({
+                id: randomStr(),
+                name: this.state.name.input,
+                description: this.state.description.trim(),
+                activities: [],
+                created_at: Date.now()
+              })
+            };
+          })
+        });
+      }
     }
   }
 
@@ -75,7 +107,9 @@ export default class CreateListForm extends React.Component {
     return (
       <Popup>
         <div id="create-list-form">
-          <h1 className="container-title">Create list</h1>
+          <h1 className="container-title">
+            {this.props.list ? 'Edit list' : 'Create list'}
+          </h1>
           <form onSubmit={this.createList}>
             <label>Name</label>
             <input
@@ -88,7 +122,7 @@ export default class CreateListForm extends React.Component {
             />
             <InlineError error={this.state.name.error} />
             <br/>
-            <label>Name</label>
+            <label>Description</label>
             <textarea
               className="theme-default width-max"
               value={this.state.description}
@@ -97,7 +131,7 @@ export default class CreateListForm extends React.Component {
               placeholder="* optional"
             />
             <br/>
-            <input className="theme-default width-max spaced-atop" type="submit" value="Create list" />
+            <input className="theme-default width-max spaced-atop" type="submit" value="Save" />
             <input
               className="theme-default scheme-danger width-max spaced-atop"
               type="button"

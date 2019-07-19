@@ -6,7 +6,7 @@ import { updateStore } from 'fluxible-js';
 import { Link, Redirect } from 'react-router-dom';
 import Popup from '../../components/Popup';
 import { truncate } from '../../helper-funcs/strings';
-import CreateListForm from './CreateListForm';
+import ListForm from './ListForm';
 import CreateActivityForm from './CreateActivityForm';
 import DeleteActivity from './DeleteActivity';
 import DeleteList from './DeleteList';
@@ -14,7 +14,7 @@ import DeleteList from './DeleteList';
 class BoardView extends React.Component {
   displayCreateListForm = () => {
     updateStore({
-      Popup: <CreateListForm boardId={this.props.match.params.id} />
+      Popup: <ListForm boardId={this.props.match.params.id} />
     });
   }
 
@@ -82,7 +82,11 @@ class BoardView extends React.Component {
         <div className="container-title">
           <p><strong>{list.name}</strong></p>
           <div className="buttons">
-            <button className="theme-text" title="Edit"><i className="fas fa-edit"></i></button>
+            <button className="theme-text" title="Edit" onClick={() => {
+              updateStore({
+                Popup: <ListForm boardId={board.id} list={list} />
+              });
+            }}><i className="fas fa-edit"></i></button>
             <button className="theme-text" title="Delete" onClick={() => {
               updateStore({
                 Popup: <DeleteList boardId={board.id} list={list} />

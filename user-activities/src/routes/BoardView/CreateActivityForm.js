@@ -199,7 +199,7 @@ export default class CreateActivityForm extends React.Component {
               onBlur={this.dueChanged}
             />
           </div>
-          <input type="submit" className="theme-default width-max" value="Create activity" />
+          <input type="submit" className="theme-default width-max" value="Save" />
           <input type="button" className="theme-default scheme-danger width-max spaced-atop" value="Cancel" onClick={this.cancel} />
         </form>
       </Popup>

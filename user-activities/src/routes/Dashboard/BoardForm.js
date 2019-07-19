@@ -94,7 +94,9 @@ export default class BoardCreate extends React.Component {
     return (
       <Popup>
         <form id="create-board" onSubmit={this.createBoard}>
-          <h1 className="container-title">Create board</h1>
+          <h1 className="container-title">
+            {this.props.board ? 'Edit board' : 'Create board'}
+          </h1>
           <div className="form-group">
             <label>Board name</label>
             <input
@@ -117,7 +119,7 @@ export default class BoardCreate extends React.Component {
               placeholder="* Optional"
             />
           </div>
-          <input type="submit" className="theme-default width-max" value={this.props.board ? 'Save' : 'Create'} />
+          <input type="submit" className="theme-default width-max" value="Save" />
           <input
             type="button"
             className="theme-default scheme-danger spaced-atop width-max"
