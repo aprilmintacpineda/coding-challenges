@@ -94,9 +94,6 @@ class BoardView extends React.Component {
             }}>
               <i className="fas fa-trash"></i>
             </button>
-            <button className="theme-text" title="Details">
-              <i className="fas fa-external-link-alt"></i>
-            </button>
           </div>
         </div>
         {this.displayListActivities(list)}
