@@ -12,19 +12,35 @@ export default class CreateActivityForm extends React.Component {
     this.nameErrorMessage = 'Please enter the name of this activity.';
     this.detailsErrorMessage = 'Please enter the details of this activity.';
 
-    this.state = {
-      name: {
-        input: '',
-        error: ''
-      },
-      category: categories[0].id,
-      status: statuses[0].id,
-      details: {
-        input: '',
-        error: ''
-      },
-      due: new Date().format('%y-%M-%D')
-    };
+    if (this.props.activity) {
+      this.state = {
+        name: {
+          input: this.props.activity.name,
+          error: ''
+        },
+        category: this.props.activity.category.id,
+        status: this.props.activity.status.id,
+        details: {
+          input: this.props.activity.details,
+          error: ''
+        },
+        due: new Date(this.props.activity.due).format('%y-%M-%D')
+      };
+    } else {
+      this.state = {
+        name: {
+          input: '',
+          error: ''
+        },
+        category: categories[0].id,
+        status: statuses[0].id,
+        details: {
+          input: '',
+          error: ''
+        },
+        due: new Date().format('%y-%M-%D')
+      };
+    }
   }
 
   createActivity = ev => {
@@ -55,6 +71,24 @@ export default class CreateActivityForm extends React.Component {
             ...board,
             lists: board.lists.map(list => {
               if (list.id !== this.props.listId) return list;
+
+              if (this.props.activity) {
+                return {
+                  ...list,
+                  activities: list.activities.map(activity => {
+                    if (activity.id !== this.props.activity.id) return activity;
+
+                    return {
+                      ...activity,
+                      name: this.state.name.input,
+                      details: this.state.details.input,
+                      category: categories.find(category => category.id === this.state.category),
+                      status: statuses.find(status => status.id === this.state.status),
+                      due: this.state.due
+                    };
+                  })
+                }
+              }
 
               return {
                 ...list,
@@ -167,7 +201,7 @@ export default class CreateActivityForm extends React.Component {
             <label>Status</label>
             <select
               className="theme-default width-max"
-              value={this.state.status.input}
+              value={this.state.status}
               onChange={this.statusChanged}
               onBlur={this.statusChanged}
             >

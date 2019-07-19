@@ -36,7 +36,7 @@ class Dashboard extends React.Component {
           {this.props.boards.map(board =>
             <div key={board.id} className="board">
               <p className="container-title" title={board.name}><strong>{truncate(board.name, 85)}</strong></p>
-              <p title={board.description}>{board.description? truncate(board.description, 200) : 'No description provided.'}</p>
+              <p title={board.details}>{board.details? truncate(board.details, 200) : 'No details provided.'}</p>
               <br/>
               <p>Created: {new Date(board.created_at).format('%f %M, %y %h:%N:%S %a')}</p>
               <div className="footer">

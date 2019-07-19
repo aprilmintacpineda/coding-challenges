@@ -7,7 +7,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Popup from '../../components/Popup';
 import { truncate } from '../../helper-funcs/strings';
 import ListForm from './ListForm';
-import CreateActivityForm from './CreateActivityForm';
+import ActivityForm from './ActivityForm';
 import DeleteActivity from './DeleteActivity';
 import DeleteList from './DeleteList';
 
@@ -24,7 +24,7 @@ class BoardView extends React.Component {
         <p>
           This list has no activies yet. <button className="create-activity theme-text" onClick={() => {
             updateStore({
-              Popup: <CreateActivityForm boardId={this.props.match.params.id} listId={list.id} />
+              Popup: <ActivityForm boardId={this.props.match.params.id} listId={list.id} />
             });
           }}>Create activity</button>
         </p>
@@ -35,16 +35,23 @@ class BoardView extends React.Component {
       <>
         <button className="theme-default width-max" onClick={() => {
           updateStore({
-            Popup: <CreateActivityForm boardId={this.props.match.params.id} listId={list.id} />
+            Popup: <ActivityForm boardId={this.props.match.params.id} listId={list.id} />
           });
         }}>Create activity</button>
         {list.activities.map(activity =>
           <div key={activity.id} className="activity">
             <p><strong>{activity.name}</strong></p>
+            <p><i>{activity.status.label}</i></p>
             <p>{activity.category.label}</p>
             <p>Due on {new Date(activity.due).format('%F %D, %y')}</p>
             <div className="footer">
-              <button className="theme-text" title="Edit"><i className="fas fa-edit"></i></button>
+              <button className="theme-text" title="Edit" onClick={() => {
+                updateStore({
+                  Popup: (
+                    <ActivityForm boardId={this.props.match.params.id} listId={list.id} activity={activity} />
+                  )
+                });
+              }}><i className="fas fa-edit"></i></button>
               <button className="theme-text" title="Delete" onClick={() => {
                 updateStore({
                   Popup: (

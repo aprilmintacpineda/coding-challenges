@@ -9,10 +9,10 @@ export default function DeleteBoard (props) {
         <p>Are you sure you want to delete this board?</p>
         <div className="board">
           <p title={props.board.name}><strong>Name:</strong> {props.board.name}</p>
-          <p title={props.board.description}>
-            <strong>Description:</strong>
+          <p title={props.board.details}>
+            <strong>Details:</strong>
             <br/>
-            {props.board.description? props.board.description : 'No description provided.'}
+            {props.board.details? props.board.details : 'No details provided.'}
           </p>
         </div>
         <p>This action cannot be undone.</p>

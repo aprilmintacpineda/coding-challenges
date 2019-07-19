@@ -15,7 +15,7 @@ export default class CreateListForm extends React.Component {
           input: this.props.list.name,
           error: ''
         },
-        description: this.props.list.description,
+        details: this.props.list.details,
       };
     } else {
       this.state = {
@@ -23,7 +23,7 @@ export default class CreateListForm extends React.Component {
           input: '',
           error: ''
         },
-        description: '',
+        details: '',
       };
     }
   }
@@ -44,12 +44,12 @@ export default class CreateListForm extends React.Component {
         }
       });
     } else {
-      if (this.props.list) {
-        updateStore({
-          Popup: null,
-          boards: store.boards.map(board => {
-            if (board.id !== this.props.boardId) return board;
+      updateStore({
+        Popup: null,
+        boards: store.boards.map(board => {
+          if (board.id !== this.props.boardId) return board;
 
+          if (this.props.list) {
             return {
               ...board,
               lists: board.lists.map(list => {
@@ -58,31 +58,24 @@ export default class CreateListForm extends React.Component {
                 return {
                   ...list,
                   name: this.state.name.input,
-                  description: this.state.description.trim()
+                  details: this.state.details.trim()
                 };
               })
             };
-          })
-        });
-      } else {
-        updateStore({
-          Popup: null,
-          boards: store.boards.map(board => {
-            if (board.id !== this.props.boardId) return board;
+          }
 
-            return {
-              ...board,
-              lists: board.lists.concat({
-                id: randomStr(),
-                name: this.state.name.input,
-                description: this.state.description.trim(),
-                activities: [],
-                created_at: Date.now()
-              })
-            };
-          })
-        });
-      }
+          return {
+            ...board,
+            lists: board.lists.concat({
+              id: randomStr(),
+              name: this.state.name.input,
+              details: this.state.details.trim(),
+              activities: [],
+              created_at: Date.now()
+            })
+          };
+        })
+      });
     }
   }
 
@@ -96,10 +89,10 @@ export default class CreateListForm extends React.Component {
     });
   }
 
-  descriptionChanged = ev => {
+  detailsChanged = ev => {
     this.setState({
       ...this.state,
-      description: ev.target.value
+      details: ev.target.value
     });
   }
 
@@ -122,12 +115,12 @@ export default class CreateListForm extends React.Component {
             />
             <InlineError error={this.state.name.error} />
             <br/>
-            <label>Description</label>
+            <label>Details</label>
             <textarea
               className="theme-default width-max"
-              value={this.state.description}
-              onChange={this.descriptionChanged}
-              onBlur={this.descriptionChanged}
+              value={this.state.details}
+              onChange={this.detailsChanged}
+              onBlur={this.detailsChanged}
               placeholder="* optional"
             />
             <br/>

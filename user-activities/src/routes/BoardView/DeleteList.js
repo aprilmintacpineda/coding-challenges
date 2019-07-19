@@ -10,9 +10,9 @@ export default function DeleteList (props) {
         <div className="list">
           <p><strong>Name:</strong> {props.list.name}</p>
           <p>
-            <strong>Description:</strong>
+            <strong>Details:</strong>
             <br/>
-            {props.list.description || 'No description provided.'}
+            {props.list.details || 'No details provided.'}
           </p>
         </div>
         <p>This action cannot be undone.</p>

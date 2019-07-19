@@ -16,7 +16,7 @@ export default class BoardCreate extends React.Component {
           input: this.props.board.name,
           error: ''
         },
-        description: this.props.board.description
+        details: this.props.board.details
       };
     } else {
       this.state = {
@@ -24,7 +24,7 @@ export default class BoardCreate extends React.Component {
           input: '',
           error: ''
         },
-        description: ''
+        details: ''
       };
     }
   }
@@ -39,10 +39,10 @@ export default class BoardCreate extends React.Component {
     });
   }
 
-  descriptionChanged = ev => {
+  detailsChanged = ev => {
     this.setState({
       ...this.state,
-      description: ev.target.value.trim()
+      details: ev.target.value
     });
   }
 
@@ -67,7 +67,7 @@ export default class BoardCreate extends React.Component {
             return {
               ...board,
               name: this.state.name.input,
-              description: this.state.description.trim()
+              details: this.state.details.trim()
             };
           })
         });
@@ -77,7 +77,7 @@ export default class BoardCreate extends React.Component {
           boards: store.boards.concat({
             id: randomStr(),
             name: this.state.name.input,
-            description: this.state.description.trim(),
+            details: this.state.details.trim(),
             created_at: Date.now(),
             lists: []
           })
@@ -98,7 +98,7 @@ export default class BoardCreate extends React.Component {
             {this.props.board ? 'Edit board' : 'Create board'}
           </h1>
           <div className="form-group">
-            <label>Board name</label>
+            <label>Name</label>
             <input
               className="theme-default width-max"
               type="text"
@@ -110,12 +110,12 @@ export default class BoardCreate extends React.Component {
             <InlineError error={this.state.name.error} />
           </div>
           <div className="form-group">
-            <label>Board description</label>
+            <label>Details</label>
             <textarea
               className="theme-default width-max"
-              value={this.state.description}
-              onChange={this.descriptionChanged}
-              onBlur={this.descriptionChanged}
+              value={this.state.details}
+              onChange={this.detailsChanged}
+              onBlur={this.detailsChanged}
               placeholder="* Optional"
             />
           </div>
