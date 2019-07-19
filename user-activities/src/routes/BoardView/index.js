@@ -5,6 +5,7 @@ import { mapStatesToProps } from 'react-fluxible';
 import { updateStore } from 'fluxible-js';
 import { Link, Redirect } from 'react-router-dom';
 import { truncate } from '../../helper-funcs/strings';
+import Popup from '../../components/Popup';
 import ListForm from './ListForm';
 import ActivityForm from './ActivityForm';
 import DeleteActivity from './DeleteActivity';
@@ -65,7 +66,22 @@ class BoardView extends React.Component {
                   )
                 });
               }}><i className="fas fa-trash"></i></button>
-              <button className="theme-text" title="Details"><i className="fas fa-external-link-alt"></i></button>
+              <button className="theme-text" title="Details" onClick={() => {
+                updateStore({
+                  Popup: (
+                    <Popup>
+                      <div id="activity-details-popup">
+                        <p>{activity.details}</p>
+                        <button className="theme-default" onClick={() => {
+                          updateStore({ Popup: null });
+                        }}>
+                          Dismiss
+                        </button>
+                      </div>
+                    </Popup>
+                  )
+                });
+              }}><i className="fas fa-external-link-alt"></i></button>
             </div>
           </div>
         )}
