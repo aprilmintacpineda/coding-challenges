@@ -202,8 +202,8 @@ export default class ActivityForm extends React.Component {
 
                     return {
                       ...activity,
-                      name: this.state.name.input,
-                      details: this.state.details.input,
+                      name: this.state.name.input.trim(),
+                      details: this.state.details.input.trim(),
                       category: categories.find(category => category.id === this.state.category),
                       status: statuses.find(status => status.id === this.state.status),
                       due: this.state.due
@@ -216,8 +216,8 @@ export default class ActivityForm extends React.Component {
                 ...list,
                 activities: list.activities.concat({
                   id: randomStr(),
-                  name: this.state.name.input,
-                  details: this.state.details.input,
+                  name: this.state.name.input.trim(),
+                  details: this.state.details.input.trim(),
                   category: categories.find(category => category.id === this.state.category),
                   status: statuses.find(status => status.id === this.state.status),
                   due: this.state.due

@@ -57,7 +57,7 @@ export default class ListForm extends React.Component {
 
                 return {
                   ...list,
-                  name: this.state.name.input,
+                  name: this.state.name.input.trim(),
                   details: this.state.details.trim()
                 };
               })
@@ -68,7 +68,7 @@ export default class ListForm extends React.Component {
             ...board,
             lists: board.lists.concat({
               id: randomStr(),
-              name: this.state.name.input,
+              name: this.state.name.input.trim(),
               details: this.state.details.trim(),
               activities: [],
               created_at: Date.now()

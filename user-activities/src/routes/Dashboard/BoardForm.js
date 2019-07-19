@@ -66,7 +66,7 @@ export default class BoardForm extends React.Component {
 
             return {
               ...board,
-              name: this.state.name.input,
+              name: this.state.name.input.trim(),
               details: this.state.details.trim()
             };
           })
@@ -76,7 +76,7 @@ export default class BoardForm extends React.Component {
           Popup: null,
           boards: store.boards.concat({
             id: randomStr(),
-            name: this.state.name.input,
+            name: this.state.name.input.trim(),
             details: this.state.details.trim(),
             created_at: Date.now(),
             lists: []
