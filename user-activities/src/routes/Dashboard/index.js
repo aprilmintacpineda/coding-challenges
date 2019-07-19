@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { mapStatesToProps } from 'react-fluxible';
 import { updateStore } from 'fluxible-js';
 import { truncate } from '../../helper-funcs/strings';
-import Popup from '../../components/Popup';
 import BoardForm from './BoardForm';
 import DeleteBoard from './DeleteBoard';
 

@@ -4,7 +4,6 @@ import React from 'react';
 import { mapStatesToProps } from 'react-fluxible';
 import { updateStore } from 'fluxible-js';
 import { Link, Redirect } from 'react-router-dom';
-import Popup from '../../components/Popup';
 import { truncate } from '../../helper-funcs/strings';
 import ListForm from './ListForm';
 import ActivityForm from './ActivityForm';
