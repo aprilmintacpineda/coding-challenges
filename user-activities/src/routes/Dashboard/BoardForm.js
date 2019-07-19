@@ -6,7 +6,7 @@ import InlineError from '../../components/InlineError';
 import Popup from '../../components/Popup';
 import { randomStr } from '../../helper-funcs/strings';
 
-export default class BoardCreate extends React.Component {
+export default class BoardForm extends React.Component {
   constructor (props) {
     super(props);
 
@@ -46,7 +46,7 @@ export default class BoardCreate extends React.Component {
     });
   }
 
-  createBoard = ev => {
+  saveBoard = ev => {
     ev.preventDefault();
 
     if (!this.state.name.input.trim()) {
@@ -93,7 +93,7 @@ export default class BoardCreate extends React.Component {
   render () {
     return (
       <Popup>
-        <form id="create-board" onSubmit={this.createBoard}>
+        <form id="create-board" onSubmit={this.saveBoard}>
           <h1 className="container-title">
             {this.props.board ? 'Edit board' : 'Create board'}
           </h1>

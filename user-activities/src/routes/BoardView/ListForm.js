@@ -5,7 +5,7 @@ import Popup from '../../components/Popup';
 import InlineError from '../../components/InlineError';
 import { randomStr } from '../../helper-funcs/strings';
 
-export default class CreateListForm extends React.Component {
+export default class ListForm extends React.Component {
   constructor (props) {
     super(props);
 
@@ -32,7 +32,7 @@ export default class CreateListForm extends React.Component {
     updateStore({ Popup: null });
   }
 
-  createList = ev => {
+  saveList = ev => {
     ev.preventDefault();
 
     if (!this.state.name.input.trim()) {
@@ -103,7 +103,7 @@ export default class CreateListForm extends React.Component {
           <h1 className="container-title">
             {this.props.list ? 'Edit list' : 'Create list'}
           </h1>
-          <form onSubmit={this.createList}>
+          <form onSubmit={this.saveList}>
             <label>Name</label>
             <input
               className="theme-default width-max"

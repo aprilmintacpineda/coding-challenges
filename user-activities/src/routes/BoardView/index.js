@@ -42,7 +42,10 @@ class BoardView extends React.Component {
             <p><strong>{activity.name}</strong></p>
             <p><i>{activity.status.label}</i></p>
             <p>{activity.category.label}</p>
-            <p>Due on {new Date(activity.due).format('%F %D, %y')}</p>
+            <p>Due on {
+              new Date(`${activity.due.year}-${activity.due.month}-${activity.due.date} ${activity.due.hours}:${activity.due.minutes} ${activity.due.meridiem}`)
+              .format('%F %D, %y %H:%N %a')
+            }</p>
             <div className="footer">
               <button className="theme-text" title="Edit" onClick={() => {
                 updateStore({
