@@ -1,0 +1,3 @@
+web: cd user-activities
+web: npm run build
+web: npm start
