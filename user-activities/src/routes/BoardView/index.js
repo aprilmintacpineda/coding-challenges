@@ -71,6 +71,7 @@ class BoardView extends React.Component {
                   Popup: (
                     <Popup>
                       <div id="activity-details-popup">
+                        <p className="container-title"><strong>{activity.name}</strong></p>
                         <p>{activity.details}</p>
                         <button className="theme-default" onClick={() => {
                           updateStore({ Popup: null });
