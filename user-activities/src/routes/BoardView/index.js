@@ -70,14 +70,12 @@ class BoardView extends React.Component {
                 updateStore({
                   Popup: (
                     <Popup>
-                      <div id="activity-details-popup">
+                      <div id="details-popup">
                         <p className="container-title"><strong>{activity.name}</strong></p>
-                        <p>{activity.details}</p>
+                        <p className="details">{activity.details}</p>
                         <button className="theme-default" onClick={() => {
                           updateStore({ Popup: null });
-                        }}>
-                          Dismiss
-                        </button>
+                        }}>Dismiss</button>
                       </div>
                     </Popup>
                   )
@@ -120,6 +118,21 @@ class BoardView extends React.Component {
             }}>
               <i className="fas fa-trash"></i>
             </button>
+            <button className="theme-text" title="Details" onClick={() => {
+              updateStore({
+                Popup: (
+                  <Popup>
+                    <div id="details-popup">
+                      <p className="container-title"><strong>{list.name}</strong></p>
+                      <p className="details">{list.details || 'No details provided.'}</p>
+                      <button className="theme-default" onClick={() => {
+                        updateStore({ Popup: null });
+                      }}>Dismiss</button>
+                    </div>
+                  </Popup>
+                )
+              });
+            }}><i className="fas fa-external-link-alt"></i></button>
           </div>
         </div>
         {this.displayListActivities(list)}
