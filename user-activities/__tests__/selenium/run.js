@@ -11,7 +11,7 @@ const driver = new Builder()
 async function runTests (suite) {
   for (let a = 0, max = suite.tests.length; a < max; a++) {
     if (suite.beforeEach) await suite.beforeEach();
-    await suite.tests[a]();
+    await suite.tests[a](driver, testId);
     if (suite.afterEach) await suite.afterEach();
   }
 }
@@ -22,7 +22,7 @@ async function runTests (suite) {
     await driver.get('https://working-space.herokuapp.com/');
     log('Running tests...');
 
-    await runTests(require('./board.spec')(driver, testId));
+    await runTests(require('./boards'));
     await sleep(2000);
   } finally {
     driver.quit();
