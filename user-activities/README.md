@@ -2,6 +2,17 @@
 
 https://working-space.herokuapp.com/
 
+# Running locally
+
+- clone repository
+- cd to `user-activities`
+- `npm install`
+- `npm run start`
+
+## Automation tests with selenium
+
+`npm run selenium`
+
 # features
 
 - User can create boards on their working space.
