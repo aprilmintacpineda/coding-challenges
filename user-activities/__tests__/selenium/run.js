@@ -23,7 +23,6 @@ async function runTests (suite) {
     log('Running tests...');
 
     await runTests(require('./boards'));
-    await sleep(2000);
   } finally {
     driver.quit();
   }
