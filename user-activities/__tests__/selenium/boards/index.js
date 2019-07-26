@@ -3,6 +3,7 @@ module.exports = {
     require('./tests/titleValidation.spec'),
     require('./tests/submittingEmptyForm.spec'),
     require('./tests/creatingBoard.spec'),
-    require('./tests/editingBoard.spec')
+    require('./tests/editingBoard.spec'),
+    require('./tests/deletingBoard.spec')
   ]
 };

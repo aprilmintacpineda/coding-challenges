@@ -1,8 +1,8 @@
 const { By } = require('selenium-webdriver');
 
-module.exports = async (driver, testId) => {
+module.exports = async () => {
   // submitting an empty form
-  const CreateBoardForm = require('../CreateBoardForm')(driver, testId);
+  const CreateBoardForm = require('../CreateBoardForm')();
   await CreateBoardForm.open();
   await CreateBoardForm.submit();
   logTestResult(

@@ -10,7 +10,10 @@ module.exports = {
   globals: {
     sleep: true,
     logTestResult: true,
-    log: true
+    log: true,
+    elementExists: true,
+    driver: true,
+    testId: true
   },
   parserOptions: {
     parser: 'babel-eslint',

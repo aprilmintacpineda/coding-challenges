@@ -1,9 +1,9 @@
 const { By } = require('selenium-webdriver');
 
-module.exports = async (driver, testId) => {
+module.exports = async () => {
   // editing a board
 
-  const CreateBoardForm = require('../CreateBoardForm')(driver, testId);
+  const CreateBoardForm = require('../CreateBoardForm')();
 
   // edit board form validates title
   await driver.findElement(By.xpath('//*[@id="boards"]/div[2]/div/button[1]')).click();

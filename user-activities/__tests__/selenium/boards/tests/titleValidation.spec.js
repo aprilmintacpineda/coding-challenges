@@ -1,8 +1,8 @@
 const { By } = require('selenium-webdriver');
 
-module.exports = async (driver, testId) => {
+module.exports = async () => {
   // test validation message of title
-  const CreateBoardForm = require('../CreateBoardForm')(driver, testId);
+  const CreateBoardForm = require('../CreateBoardForm')();
   await CreateBoardForm.open();
   await CreateBoardForm.fillTitle();
   await CreateBoardForm.clearTitle();

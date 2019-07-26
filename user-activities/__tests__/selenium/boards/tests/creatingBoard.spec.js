@@ -1,8 +1,8 @@
 const { By } = require('selenium-webdriver');
 
-module.exports = async (driver, testId) => {
+module.exports = async () => {
   // can create board without description
-  const CreateBoardForm = require('../CreateBoardForm')(driver, testId);
+  const CreateBoardForm = require('../CreateBoardForm')();
   let title = null;
 
   await CreateBoardForm.open();
